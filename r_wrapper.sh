@@ -17,13 +17,20 @@ fail()
 which R > /dev/null || fail "'R' is required by this tool but was not found on path" 
 
 # Extract first argument
-infile=$1; shift
+r_script=$1; shift
 
 # Ensure the file exists
-test -f $infile || fail "R input file '$infile' does not exist"
+test -f $r_script || fail "R input file '$r_script' does not exist"
 
 # Invoke R passing file named by first argument to stdin
 #Remove --slve for full R output
-R --vanilla --slave --args $* < $infile
 
-echo "done"
+echo "R Script " $r_script
+echo "args " $*
+
+R --vanilla --slave --args "$@" < $r_script
+
+status=$?
+echo Done with status $status
+exit $status
+
