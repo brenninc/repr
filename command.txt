@@ -1,8 +1,6 @@
-docker run --rm -v /home/christian/Dropbox/Manchester/docker/repr/scripts/:/scripts brenninc/repr scripts/exampleRScript1.R -h
-
-docker run --rm -v /home/christian/Dropbox/Manchester/docker/repr/scripts/:/scripts brenninc/repr scripts/exampleRScript1.R -a hello -b world
-
-docker run --rm -v /home/christian/Dropbox/Manchester/docker/repr/scripts/:/scripts -v /home/christian//Dropbox/Manchester/docker/repr/data:/data brenninc/repr scripts/extract_graph.R --csv_file=/data/Amanda_single_cell_MCF10a_96_genes_modified.csv --na_value=999 --data_output_file=/data/output.csv --output_na_value=999 --graph_file=/data/graph.eps --graph_red_line=20 --graph_height=15 --graph_width=15 --verbose 
-
 docker run --rm -v /home/christian/Dropbox/Manchester/docker/repr/scripts/:/scripts -v /home/christian//Dropbox/Manchester/docker/repr/data:/data brenninc/repr scripts/qPCR_workflow.R --csv_file=/data/Amanda_single_cell_MCF10a_96_genes_modified.csv
+
+docker run --rm -v /home/christian/Dropbox/Manchester/galaxy_shed_tools/repr_tools:/scripts -v /home/christian/Dropbox/Manchester/docker/repr/data:/data brenninc/repr scripts/xlstotsv.R --xls_file=/data/Amanda_single_cell_MCF10a_96_genes.xlsx --ignore_rows=9 --names_rows=3 --tsv_output_file=/data/cleaned.tsv --raw_tsv_file=/data/raw.tsv --meta_data_file=/data/meta_data.tsv --script_dir="/scripts" --debug
+
+docker run --rm -v /home/christian/Dropbox/Manchester/galaxy_shed_tools/repr_tools:/scripts -v /home/christian/Dropbox/Manchester/docker/repr/data:/data brenninc/repr scripts/extract_graph.R --input_file=/data/Amanda_single_cell_MCF10a_96_genes_modified.csv --input_file_format=csv --na.strings=999 --value_col=8 --value=Value --column_names=GeneName --row_names_col=3 --data_output_file=/data/output.tsv --data_output_format=tsv --output_na_value=999 --graph_file=/data/graph.jpg --graph_red_line=20 --graph_height=15 --graph_width=15 --script_dir="/scripts" --debug
 
